@@ -1,0 +1,7 @@
+
+var userData =[
+  {'name': 'Muhammed',
+    'email': 'asd@gmail.com',
+    'password':'asdasd'
+  }
+]
