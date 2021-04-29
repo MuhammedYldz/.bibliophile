@@ -1,17 +1,18 @@
-//List Of Readed Books
+// List of To Read Book
 import 'package:flutter/material.dart';
 import 'package:bibliophile/screens/DisplayBook.dart';
-class ReadedBooks extends StatefulWidget {
+
+class ToReadBooks extends StatefulWidget {
   @override
-  _ReadedBooksState createState() => _ReadedBooksState();
+  _ToReadBooksState createState() => _ToReadBooksState();
 }
 var bookData=[];
-class _ReadedBooksState extends State<ReadedBooks> {
+class _ToReadBooksState extends State<ToReadBooks> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Readed Books'),
+        title: Text('To Read Books'),
       ),
       drawer: Drawer(
           child: ListView(
@@ -20,7 +21,7 @@ class _ReadedBooksState extends State<ReadedBooks> {
               DrawerHeader(child: Text('Page\'s'),decoration: BoxDecoration(color: Colors.blue),),
               ListTile(title:Text('Home'),onTap: (){Navigator.pushNamed(context,'/home');},),
               ListTile(title:Text('Reading Books'),onTap: (){Navigator.pushNamed(context,'/ReadingBooks');},),
-              ListTile(title:Text('To Read Books'),onTap: (){Navigator.pushNamed(context,'/ToReadBooks');},),
+              ListTile(title:Text('Readed Books'),onTap: (){Navigator.pushNamed(context,'/ReadedBooks');},),
               ListTile(title:Text('About'),onTap: (){Navigator.pushNamed(context,'/About');},),
               ListTile(title:Text('Profile'),onTap: (){Navigator.pushNamed(context,'/Profile');},),
             ],
@@ -49,38 +50,38 @@ class _ReadedBooksState extends State<ReadedBooks> {
               children: <Widget>[
                 bookSection(
                     'https://www.thebookdesigner.com/wp-content/uploads/2018/11/The-book-of-chaos.jpg',
-                    'name', 'author', 0, 'Readed'),
+                    'name', 'author', 0, 'ToRead'),
                 SizedBox(
                   width: 20.0,
                 ),
                 bookSection(
                     'https://www.thebookdesigner.com/wp-content/uploads/2018/11/The-book-of-chaos.jpg',
-                    'name', 'author', 1, 'Readed'),
+                    'name', 'author', 1, 'ToRead'),
                 SizedBox(
                   width: 20.0,
                 ),
                 bookSection(
                     'https://www.thebookdesigner.com/wp-content/uploads/2018/11/The-book-of-chaos.jpg',
-                    'name', 'author', 2, 'Readed'),
+                    'name', 'author', 2, 'ToRead'),
                 SizedBox(
                   width: 20.0,
                 ),
                 bookSection(
                     'https://www.thebookdesigner.com/wp-content/uploads/2018/11/The-book-of-chaos.jpg',
-                    'name', 'author', 3, 'Readed'),
+                    'name', 'author', 3, 'ToRead'),
                 SizedBox(
                   width: 20.0,
                 ),
                 bookSection(
                     'https://www.thebookdesigner.com/wp-content/uploads/2018/11/The-book-of-chaos.jpg',
-                    'name', 'author', 4, 'Readed'),
+                    'name', 'author', 4, 'ToRead'),
                 SizedBox(
                   width: 20.0,
                 ),
 
                 bookSection(
                     'https://www.thebookdesigner.com/wp-content/uploads/2018/11/The-book-of-chaos.jpg',
-                    'name', 'author', 5, 'Readed'),
+                    'name', 'author', 5, 'ToRead'),
               ],
             ),
           ),

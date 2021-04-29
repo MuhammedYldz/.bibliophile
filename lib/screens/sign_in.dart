@@ -7,19 +7,93 @@ import 'package:bibliophile/utilities/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:bibliophile/screens/Data.dart';
 
-String email = 'asd';
-String password ='asd';
+String email ;
+String password ;
 
 var data =[];
 class sign_in extends StatefulWidget {
-
-
   @override
   _sign_inState createState() => _sign_inState();
 }
 
 class _sign_inState extends State<sign_in> {
   bool _rememberMe = false;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light,
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: Stack(
+            children: <Widget>[
+              Container(
+                height: double.infinity,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color(0xFF73AEF5),
+                      Color(0xFF61A4F1),
+                      Color(0xFF478DE0),
+                      Color(0xFF398AE5),
+                    ],
+                    stops: [0.1, 0.4, 0.7, 0.9],
+                  ),
+                ),
+              ),
+              Container(
+                height: double.infinity,
+                child: SingleChildScrollView(
+                  physics: AlwaysScrollableScrollPhysics(),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 40.0,
+                    vertical: 120.0,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'Welcom to Bibliophile!',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'OpenSans',
+                          fontSize: 40.0,
+                          fontWeight: FontWeight.bold,
+
+                        ),
+                      ),
+                      Text(
+                        'Sign In',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'OpenSans',
+                          fontSize: 30.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 30.0),
+                      _buildEmailTF(),
+                      SizedBox(
+                        height: 30.0,
+                      ),
+                      _buildPasswordTF(),
+                      _buildForgotPasswordBtn(),
+                      _buildRememberMeCheckbox(),
+                      _buildLoginBtn(),
+                      _buildSignupBtn(),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
   Widget _buildEmailTF() {
     return Column(
@@ -36,7 +110,7 @@ class _sign_inState extends State<sign_in> {
           height: 60.0,
           child: TextField(
             keyboardType: TextInputType.emailAddress,
-            onChanged:(text){data[1] = text;},
+            onChanged:(text){email = text;},
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
@@ -71,7 +145,7 @@ class _sign_inState extends State<sign_in> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextField(
-            onChanged: (text){data[2] = text;},
+            onChanged: (text){password = text;},
             obscureText: true,
             style: TextStyle(
               color: Colors.white,
@@ -136,22 +210,21 @@ class _sign_inState extends State<sign_in> {
 
   Widget _buildLoginBtn() {
 
-
-
     return Container(
       padding: EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
       child: RaisedButton(
         elevation: 5.0,
-        onPressed: () => Navigator.push(
+        onPressed: () =>{SetData(),  Navigator.push(
             context,
             MaterialPageRoute(builder:
                 (context){return home();},
                 settings: RouteSettings(
-                    arguments: data,
-                )
-            )
-        ),
+                    arguments: data
+                ),
+            ),
+          )
+        },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
@@ -172,15 +245,12 @@ class _sign_inState extends State<sign_in> {
   }
 
   Widget _buildSignupBtn() {
-
-
-
     return GestureDetector(
       onTap: () => Navigator.push(
           context,
           MaterialPageRoute(builder: (context){return sign_up();},
                 settings: RouteSettings(
-                arguments: data,
+                  arguments: data,
                 )
               )
       ),
@@ -211,78 +281,9 @@ class _sign_inState extends State<sign_in> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-
-
-    return Scaffold(
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
-            children: <Widget>[
-              Container(
-                height: double.infinity,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color(0xFF73AEF5),
-                      Color(0xFF61A4F1),
-                      Color(0xFF478DE0),
-                      Color(0xFF398AE5),
-                    ],
-                    stops: [0.1, 0.4, 0.7, 0.9],
-                  ),
-                ),
-              ),
-              Container(
-                height: double.infinity,
-                child: SingleChildScrollView(
-                  physics: AlwaysScrollableScrollPhysics(),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 40.0,
-                    vertical: 120.0,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        'Sign In',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'OpenSans',
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(height: 30.0),
-                      _buildEmailTF(),
-                      SizedBox(
-                        height: 30.0,
-                      ),
-                      _buildPasswordTF(),
-                      _buildForgotPasswordBtn(),
-                      _buildRememberMeCheckbox(),
-                      _buildLoginBtn(),
-                      _buildSignupBtn(),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
+  void SetData(){
+    data.add(email) ;
+    data.add(password);
   }
 }
-var userData =[
-  {'name': 'Muhammed',
-    'email': 'asd@gmail.com',
-    'password':'asdasd'
-  }
-];
+
